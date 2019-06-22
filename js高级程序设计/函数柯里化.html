@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var obj = {
+		    name: "aaaaaaaaaa"
+		};
+
+		var name = "bbb";
+
+		function fn(n1, n2) {
+		    console.log(this.name);
+		    console.log(n1 + n2);
+		}
+
+		// setTimeout(fn.bind(obj, 1, 2), 2000);//bind函数不立即执行，而是简单的对函数做了一个预处理（加工）。等待调用的时候才执行。
+
+		// 对传入的参数做了预处理，然后再返回函数，函数调用时执行返回的函数
+		function myBind(fn, context) {
+		    var outerArg = Array.prototype.slice.call(arguments, 2);
+		    console.log(outerArg)
+		    return function() {
+		        fn.apply(context, outerArg);
+		    }
+		}
+
+		// setTimeout(myBind(fn, obj, 1, 2), 2000);//2秒后执行函数
+
+		// ==============================================
+		// 添加到函数原型上
+
+		Function.prototype.myBind = function myBind(context){
+			var _this = this;
+			var content = Array.prototype.slice.call(arguments,1);
+			console.log(content)
+			// context是传入的obj
+			return function(){
+				_this.apply(context,content)
+			}
+		}
+
+		setTimeout(fn.myBind(obj,1,2),2000)
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		var txt = "";
+		var box = document.querySelector("#box")
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4){
+				if(xhr.status>=200&&xhr.status<300){
+					console.log(JSON.parse(xhr.responseText));
+					var o = JSON.parse(xhr.responseText);
+					for(var k in o){
+						if(typeof o[k]=="object"){
+							
+							o[k].forEach(function(v,i){
+								txt+="<img src="+v+"/>"
+							})
+						}else{
+							txt+="<div>"+o[k]+"</div>"
+						}
+					}
+					console.log(txt);
+					console.log(box);
+					box.innerHTML = txt;
+				}
+			}
+		}
+		xhr.open('get','a.json',true);
+		xhr.send(null);
+	</script>
+</body>
+</html>

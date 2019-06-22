@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Set Map</title>
+</head>
+<body>
+	<script>
+		const s = new Set();
+		[2,3,23,{a:4},,3,1].forEach(x=>s.add(x));
+		console.log(s);
+		for(var item of s.keys()){
+			console.log(item)
+		}
+		for(var item of s.values()){
+			console.log(item)
+		}
+		for(var item of s.entries()){
+			console.log(item)
+		}
+		
+		const a = [[1, 2], [3, 4]];
+		const ws = new WeakSet(a);
+		let win = {a:4};
+		console.log(ws);
+		ws.add(win);
+		for(var item of a){
+			console.log(item)
+		}
+	</script>
+</body>
+</html>

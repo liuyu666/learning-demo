@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var mul = 0;
+		function a(x){
+			if(x==1){
+				return 1
+			}else{
+				mul = x*a(x-1);
+				return mul;
+			}
+		}
+		console.log(a(5));
+	</script>
+</body>
+</html>

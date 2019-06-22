@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="parent">
+		<li id = "q">qq</li>
+		<li id = "w">ww</li>
+		<li id = "e">ee</li>
+	</ul>
+	<script>
+		var parent = document.querySelector("#parent");
+		parent.onclick = function(event){
+			console.log(event.target)
+		}
+	</script>
+</body>
+</html>

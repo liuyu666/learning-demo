@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var o = {
+			name:'tom',
+			sayName(){
+				console.log(this.name);//this指向所在对象，调用它的对象
+			}
+		}
+		o.sayName();
+
+
+		var name = "lucy";//window里边
+		function sayName(){//全局函数
+				console.log(this.name);
+				console.log(arguments.callee.caller)
+			}
+		
+		sayName();
+		window.sayName();//this就近调用对象
+	</script>
+</body>
+</html>

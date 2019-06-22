@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*function star(n){
+			for (var i = n; i > 0; i--) {
+				let a = "";
+				for (var j = 0; j < i; j++) {
+					a+="*";
+				}
+				console.log(a);
+			}
+		}
+		star(5);*/
+		// var x= 0;
+		/*function a(n){
+			
+			if(n==1||n == 2){
+				// x+=(n-1)+(n-2)
+				return 1
+			}else{
+				return a(n-1)+a(n-2)
+			}
+		}
+		console.log(a(6));*///1 1 2 3 5 8
+		
+		for(var n = 1;n<256;n++){
+		    let sum = (n*n)+"";
+		    let arr = sum.split("");
+		    arr1 = arr.concat();
+		    arr1.reverse();
+		    function s(){
+		    	// let id = 1;
+			    for(var i in arr){
+			        if(arr[i]!=arr1[i]){
+			            return false
+			        }
+			    }
+			    return true;
+			}
+			if(s()){
+				console.log(`${n}*${n}=${n*n}`);
+			}
+		}
+	</script>
+</body>
+</html>

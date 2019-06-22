@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var i = function(){
+			alert("单例模式")
+		}
+		var i;
+		i();
+		console.log(i);
+
+		//实现单例模式
+		var arr = ["hello","world"]
+		var single = (function(){
+			var unique;
+			function getUnique(v){
+				if(unique === undefined){
+					unique = new Construct(v);
+				}
+				return unique;
+			}
+			function Construct(v){
+				arr.push(v)
+				console.log(arr)
+			}
+			return {
+				getUnique:getUnique
+			}
+		})()
+
+		single.getUnique("hello")
+
+		function fn(v){
+			arr.push(v)
+			console.log(arr)
+		}
+		fn("hello")
+		fn("hello")
+
+		console.log(single.getUnique("world"));//直接返回unique之前实例化的对象，没有重新进行实例化Construct函数类
+	</script>
+</body>
+</html>

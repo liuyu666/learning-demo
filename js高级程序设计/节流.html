@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="myDiv">hhhhhh</div>
+	<script>
+		var processor = {
+			setTimeId:null,
+
+			processId:function(){
+				console.log("aa")
+			},
+
+			processSetTime:function(){
+				clearTimeout(this.setTimeId)
+				let that = this
+				setTimeout(()=>{
+					that.processId()
+				},100)
+			}
+		}
+
+		processor.processSetTime()
+
+		function throttle(method,context){
+			clearTimeout(method.tId);
+			method.tId = setTimeout(()=>{
+				method.call(context)
+			},1000)
+		}
+
+		function resizeDiv(){
+			var div = document.querySelector("#myDiv")
+			div.style.height = div.offsetWidth+"px"
+		}
+		window.resize = function(){
+			throttle(resizeDiv)
+		}
+	</script>	
+</body>
+</html>

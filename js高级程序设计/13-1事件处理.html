@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<div >hello</div>
+	</div>
+	<script>
+		// DOM事件处理
+		var eventUtil = {
+			addHandler:function(element,type,handler){
+				if(element.addEventlistener){
+					element.addEventlistener(type,handler,false)
+				}else if(element.attachEvent){
+					element.attachEvent("on"+type,handler)
+				}else{
+					element["on"+type] = handler;
+				}
+			},
+			removeHandler:function(element,type,handler){
+				if(element.removeEventlistener){
+					element.removeEventlistener(type,handler,false)
+				}else if(element.detachEvent){
+					element.detachEvent("on"+type,handler)
+				}else{
+					element["on"+type] = null;
+				}
+			}
+		}
+		var box = document.querySelector("#box");
+		console.log(box);
+		var handler = ()=>{
+			alert("hello")
+		}
+		eventUtil.addHandler(box,"click",handler)
+		/*box.onclick = function(event){
+			console.log(event.target)//只包含实际目标，不冒泡
+			console.log(event.currentTarget)
+		}*/
+		document.onmousewheel = function(event){
+			console.log(event.wheelDelta)
+		}
+	</script>
+</body>
+</html>

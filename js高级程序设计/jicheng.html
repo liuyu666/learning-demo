@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		// 构造函数继承，可以向父级传递参数
+		/*function Animal(age){
+			this.species = ["动物","生物"]
+			this.age = age
+		}
+
+		function Cat(name,color,age){
+			Animal.call(this,age)
+			this.name = name;
+			this.color = color;
+		}
+
+		var cat1 = new Cat("大毛","黄色",20)
+		var cat2 = new Cat("大毛","黄色",20)
+		cat1.species.push("活的")
+		console.log(cat2.species)
+		alert(cat1.age)*/
+
+		// ===============================
+
+		// 类式继承（prototype模式）
+		/*function Animal(){
+			this.name = "sam";
+			this.age = 30;
+			this.species = ["动物","生物"]
+		}
+		Animal.prototype.getName = function(){
+			return this.name;
+		}
+		Animal.prototype.species = ["动物","物"]
+		function Cat(){}
+		Cat.prototype = new Animal();
+		// Cat.prototype = Animal.prototype;//Cat修改constructor会将父级的构造函数指向也变成Cat
+		Cat.prototype.constructor = Cat;　
+		var cat = new Cat();
+		var cat1 = new Cat();
+		cat.species.push("活的")
+		console.log(cat.getName())
+		console.log(cat1.species)
+		console.log(cat instanceof Cat)
+		console.log(cat instanceof Animal)
+		console.log(Cat instanceof Animal)*/
+
+		//==================================
+
+		// 空对象作为中介(原型式继承)
+		function Animal(){
+			this.species = "动物"
+		}
+
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+		}
+		function extend(Child,Parent) {
+		    var F = function() {};　　　　
+		    F.prototype = Parent;　　　　
+		    Child.prototype = new F();　　　　
+		    Child.prototype.constructor = Child;　　　　
+		    Child.uber = Parent.prototype;　　
+		}
+		extend(Cat,Animal);
+		/*function extend(o) {
+		    var F = function() {};　　　　
+		    F.prototype = o;　　　　
+		    Child.prototype = new F();　　　　
+		}*/
+		var cat1 = new Cat("大猫","黄色");
+		console.log(cat1.species)
+
+		// =================================
+
+		// 组合寄生式继承
+
+		function inheritObject(o){
+			function F(){}
+			F.prototype = o;
+			// 返回一个父级对象的实例
+			return new F()
+			//会出现类式继承的问题（引用）
+		}
+
+		// 继承父级原型*******
+		function inheritPrototype(sub,sup){
+			// 父级原型用新对象实例返回
+			var p = inheritObject(sup.prototype);
+			// var p = sup.prototype;
+			p.constructor = sub;
+			sub.prototype = p;
+		}
+
+		// 定义父类
+		function superCalss(name){
+			this.name = name;
+			this.color = ["yellow","red","blue"]
+		}
+		superCalss.prototype.getName = ()=>{
+			return this.name
+		}
+
+		// 定义子类
+		function subClass(name,time){
+			superCalss.call(this,name);
+			this.time = time
+		}
+		// 子类继承父类原型
+		inheritPrototype(subClass,superCalss);
+		subClass.prototype.getTime = ()=>{
+			return this.time;
+		}
+
+		var instance1 = new subClass("xiaoming",2019)
+		var instance2 = new subClass("sam",2017)
+		instance1.color.push("orange");
+
+		console.log(instance1.color)
+		console.log(instance2.color)
+
+
+		// =================================
+
+		// 拷贝继承
+		/*function Animal(){};
+		Animal.prototype.species = ["animal","dongwu"];
+
+		function extend(child,parent){
+			var p = parent.prototype;
+			var c = child.prototype;
+			for(var i in p){//浅拷贝
+				c[i] = p[i]
+				console.log(p)
+			}
+		}
+
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+		}
+
+		extend(Cat,Animal);
+		var cat3 = new Cat("damao","yellow");
+		var cat4 = new Cat("haha","white");
+		cat4.species.push("动物")
+		alert(cat3.species)*/
+	</script>
+</body>
+</html>

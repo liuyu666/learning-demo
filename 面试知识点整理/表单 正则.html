@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <form action="" name="form1">
+		<input type="text"  placeholder="请输入手机号" /><span id="phone"></span><br>
+		<input type="text" placeholder="请输入邮箱"/><span id="email"></span>
+	</form> -->
+	<form action="" name="form2">
+		<input type="text"  placeholder="请输入手机号" /><span id="phone"></span><br/>
+		<input type="text" placeholder="请输入邮箱"/><span id="email"></span>
+		<br/>
+		<select name="mySelect"> 
+		　　<option value="1">one</option> 
+		　　<option value="2">two</option> 
+		　　<option value="3">three</option> 
+		</select>
+		<br>
+		<input type="submit"/>
+	</form>
+
+
+            <form name="form3">
+                <!--文本-->
+                <input type="text" placeholder="text" name="text1" />
+                <!--密码-->
+                <input type="password" placeholder="password" name="password" />
+                <!--多行文本域-->
+                <textarea placeholder="textarea" name="textarea" style="resize:none"></textarea>
+                <!--文件上传-->
+                <input type="file" name="file"/>
+                <!--单选框,注意name值一样-->
+                <input type="radio" name="option" value="option1"/>option1
+                <input type="radio" name="option" value="option1"/>option2
+                <!--复选框-->
+                <input type="checkbox" name="check" value="option1"/>option1
+                <input type="checkbox" name="check" value="option2"/>option2
+                <input type="checkbox" name="check" value="option3"/>option3
+                
+                <input type="submit" value="submit"/>
+                <input type="reset" value="reset"/>
+                <input type="button" value="button" onclick="getValue()"/>
+                
+            </form>
+	
+	<script>
+		/*var form_zz = document.forms[0];
+		// console.log(form_zz.elements[0]);
+		form_zz.elements[0].onblur = function(e){
+			var phone = document.getElementById('phone');
+		    if(!(/^1[34578]\d{9}$/.test(e.value))){ 
+		        phone.innerHTML = "√"
+		        // return false; 
+		    } 
+		}
+		form_zz.elements[1].onblur = function(){
+			var email = document.getElementById('email');
+		    if(!(/^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/.test(e.value))){ 
+		        email.innerHTML = "√"
+		        return false; 
+		    }
+		}*/
+
+		// var reg11 = /\b((?!abc)\w)+\b/;
+		/*var reg11 = /\b(\w(?!abc))+\b/;
+		var reg12 = /\b(?<!abc)\w+\b/;
+		var num = 'accfvabcabbe';
+		console.log(reg11.exec(num));
+		console.log(reg11.test(num));
+		console.log(reg12.exec(num));
+		console.log(reg12.test(num));*/
+		var form_z2 = document.forms["form2"];
+		var ele = form_z2.elements[0].onfocus = function(e){
+				console.log(e);
+				e.target.select()
+		}
+
+		var index = form_z2.mySelect.selectedIndex; // 选中索引
+
+		var text = form_z2.elements[2].options[index].text; // 选中文本
+
+		var value = form_z2.mySelect.options[index].value; // 选中值
+		console.log(index);
+		console.log(text);
+		console.log(value);
+
+		form_z2.onsubmit=function(e){
+			// console.log(e.elements[2]);
+			var index = form_z2.mySelect.selectedIndex; 
+			console.log(index);
+			return false;
+		}
+
+		function getValue(){
+		    var v1 = document.form3.text1.value;
+		    var arr = document.form3.check;
+		    console.log(arr);
+		    alert(arr[0].value);
+
+		}
+	</script>
+</body>
+</html>

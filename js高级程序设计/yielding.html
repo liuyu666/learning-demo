@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title></head>
+<body>
+	<div id="myDiv"></div>
+	<script>
+		function chunk(array,process,context){
+			setTimeout(function(){
+				let item = array.shift();
+				process.call(context,item);
+				if(array.length){
+					setTimeout(arguments.callee,100)
+				}
+			},100)
+		}
+
+		let data = [54,5,415,415,46,4,646,4,6,646,46,1464,646,46,464,61]
+
+		function printValue(item){
+			let div = document.querySelector("#myDiv");
+			div.innerHTML +=item+"<br>"
+		}
+
+		chunk(data.concat(),printValue);
+	</script>
+</body>
+</html>
+

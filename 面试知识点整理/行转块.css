@@ -1,0 +1,12 @@
+1、
+
+两种自动把行内元素变成块级元素的方法，即使元素inline属性变成inline-block属性：
+1、给行内元素设置position:absolute/fixed;
+2、让行内元素浮动，即float;
+此时便可以对其设置width,height,相当于display:inline-block,但优先级高于display。
+
+2、
+
+伪元素:before和:after的作用就是在指定的元素内容（而不是元素本身）之前或者之后插入一个包含content属性指定内容的行内元素。
+1、需要和content属性一起使用，
+2、这个伪元素默认是行内元素，不过可以使用display改变这一点。

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+	<script>
+		/*console.log(window.location.search);
+		let str = window.location.search;//地址中的参数
+		str = str.substring(1);//删除字符串第一个？
+		let arr = str.split("&");
+		let obj = {};
+		arr.forEach(function(value){
+			let arrO = value.split("=");//[a,4][b,5]
+			obj[arrO[0]] = arrO[1];
+
+		})
+		console.log(obj);*/
+		var num = 0;
+		setTimeout(function(){
+			console.log(num++);
+			setTimeout(arguments.callee,1000)
+		},1000)
+	</script>
+</body>
+</html>

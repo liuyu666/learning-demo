@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <div onClick="promiseClick()">开始异步请求</div> -->
+	<script>
+		const promiseClick =()=>{
+		 console.log('点击方法被调用')
+		 let p = new Promise(function(resolve, reject){
+			//做一些异步操作
+			setTimeout(function(){
+					console.log('执行完成Promise');
+					resolve('要返回的数据可以任何数据例如接口返回数据');
+				}, 2000);
+			});
+	        return p
+		}
+		promiseClick().then(function(data){
+		    console.log(data);
+		    //后面可以用传过来的数据做些其他操作
+		    //......
+		});
+	</script>
+</body>
+</html>

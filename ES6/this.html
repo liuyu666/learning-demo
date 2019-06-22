@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// function sayHi(name){
+		// 	console.log(`hello,${this.name}`)
+		// }
+		// var name = "liuyu";
+		// var person = {
+		// 	name:"bimengjun",
+		// 	sayHi:sayHi
+		// }
+		// person.sayHi();
+		// console.log(person.sayHi);
+		// sayHi("bmj");
+		// let hi = person.sayHi;
+		// hi.apply(person);
+
+		// function sayHi(){
+		//     console.log('Hello,', this.name);
+		// }
+		// var person1 = {
+		//     name: 'YvetteLau',
+		//     sayHi: function(){
+		//         setTimeout(function(){
+		//             console.log('Hello,',this.name);
+		//         })
+		//     }
+		// }
+		// var person2 = {
+		//     name: 'Christina',
+		//     sayHi: sayHi
+		// }
+		// var name='Wiliam';
+		// person1.sayHi();
+		// setTimeout(person2.sayHi,100);//0.1秒，指向函数sayHi
+		// setTimeout(function(){
+		//     person2.sayHi();
+		// },200);
+
+
+		// function sayHi(){
+		//     console.log('Hello,', this.name);
+		// }
+		// var person = {
+		//     name: 'YvetteLau',
+		//     sayHi: sayHi
+		// }
+		// var name = 'Wiliam';
+		// var Hi = function(fn) {
+		//     fn();
+		// }
+		// Hi.call(person, person.sayHi); 
+
+		var obj = {
+		    hi: function(){
+		        console.log(this);
+		        return ()=>{
+		            console.log(this);
+		        }
+		    },
+		    sayHi: function(){
+		        return function() {
+		            console.log(this);
+		            return ()=>{
+		                console.log(this);
+		            }
+		        }
+		    },
+		    say: ()=>{
+		        console.log(this);
+		    }
+		}
+		let hi = obj.hi();  //输出obj对象
+		hi();               //输出obj对象
+		let sayHi = obj.sayHi();
+		let fun1 = sayHi(); //输出window
+		fun1();             //输出window
+		obj.say();          //输出window
+
+		// var arr = [1,4,2,7,45,3];
+		// var x = arr.sort((a,b)=>b-a)
+		// var x = arr.sort((a,b)=>{
+		// 	return b-a
+		// })
+		// console.log(x)
+	</script>
+</body>
+</html>

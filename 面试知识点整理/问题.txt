@@ -1,0 +1,64 @@
+const 常量 
+定义数组对象可以添加
+
+
+模板字面量(ES6)
+`${}`
+
+逻辑&& ||返回的不一定是布尔类型
+
+函数声明提升
+
+function(a,b,c,d){
+	console.log(arguments);数组形参
+}
+
+console.log(a);//undefined 声明提升赋值没有
+var a = 3;
+
+函数：
+function(a,b){
+	arguments[0];//a
+	arguments[1];//b
+	arguments.callee//函数本身
+}
+
+垃圾收集：引用计数（相互引用出问题），标记清除（object = null）
+
+
+
+快速排序sort
+
+arr.every()//返回布尔
+arr.filter()//返回符合的项数
+
+
+apply/call:借用别人的逻辑， 参数（作用域对象，参数构成的数组/数组的每一项）
+
+function sum(a,b){
+	//处理函数
+}
+
+function sum_pl(){
+	sum.apply(this,[a,b]);
+}
+
+
+setTimeout()准确
+
+alert()弹出
+confirm()确认//模态，不能操作页面其他内容
+
+location对象：操作浏览器URL
+window.location
+
+navigator.userAgent:判断浏览器
+
+数组去重
+对象深浅复制
+this指向
+
+
+SQL数据库：建表，表关联
+
+文档碎片

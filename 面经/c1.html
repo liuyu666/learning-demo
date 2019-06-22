@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="" id="form_1">
+		<input type="text"/>
+		<input type="button" id="button" value="提交"/>
+		<input type="submit" value="提交"/>
+	</form>
+	<script>
+		console.log(document.forms[0]);
+		var form_1 = document.querySelector("#form_1");
+		console.log(form_1);
+		// button.onclick = function(){
+		// 	form_1.submit()
+		// }
+
+		var reg = new RegExp("on","gi");
+		var reg1 = /on/g;
+		var str = "a in ON on inon";
+		console.log(reg.exec(str))
+		console.log(reg1.exec(str));
+		console.log(reg1.exec(str));
+		console.log(reg.test(str));
+		document.designMode = "on"
+	</script>
+</body>
+</html>

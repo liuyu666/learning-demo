@@ -1,0 +1,67 @@
+事件流：父级到子集捕获-处于目标阶段-向上冒泡
+
+dom2级事件处理程序：
+
+dom.addEventListener('click',fn,false)//false代表冒泡阶段使用
+function fn(){
+	alert(1)
+}
+dom.removeEventListener('click',fn,false)
+
+IE:
+dom.attachEvent('onclick',fn)
+dom.detachEvent('onclick',fn)
+
+body.onclick = function(e){
+	**e.target//触发事件的真正dom节点：子集dom
+	**this//调用函数的dom：body
+	判断nodeName是否与父级nodeName可组织冒泡
+}
+
+-------------------------------
+e.target事件委托:
+父级写处理函数，通过e.target得出哪个子元素冒泡到父级，来控制子元素的点击事件(父级函数处理时可以得知一下子元素次序)
+
+错误处理：
+
+js阻塞操作
+
+function a(){
+	try{
+		//可能出错的地方
+		console.log(x);
+		throw new Error("错误")
+	}catch(error){
+		return;
+		console.log("错误")
+	}finally{
+		console.log("finally")//就算return，还是会显示这部分内容
+	}
+}
+a();
+
+表单：
+//提交按钮
+document.forms[0].onsubmit = function(e){
+	e.preventDafault()
+}
+//普通按钮
+button.onclick = function(){
+	form_1.submit()
+}
+
+正则：
+var reg = new RegExp("on","gi");
+var reg1 = /on/g;
+var str = "a in om on inon";
+
+三种方法
+reg1.exec(str)
+reg.test(str)
+str.match(reg)
+
+console.log(reg.exec())
+console.log(reg1.exec());
+console.log(reg.test());
+
+

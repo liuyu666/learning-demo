@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul class = "tit">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		let tit_lis = document.querySelectorAll(".tit li");
+		let tit = document.querySelector(".tit");
+		tit.onclick = function(e){
+			console.log(e.target);
+			let item = e.target,num = 0;
+			while(item.previousElementSibling){
+				num++;
+				item = item.previousElementSibling;
+			}
+			console.log(num);
+		}
+		let fragment = document.createDocumentFragment();
+		for (var i = 0; i <= 3; i++) {
+			let new_li = document.createElement("li");
+			new_li.appendChild(document.createTextNode(i));
+			fragment.appendChild(new_li);
+		}
+		tit.appendChild(fragment);
+	</script>
+</body>
+</html>

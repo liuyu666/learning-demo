@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var Demo = function(){};
+		Demo.prototype = {
+			show(){
+				console.log("success")
+			}
+		}
+		var d = new Demo();
+		d.show();
+		// 不是new创建，thisz指向全局对象
+		var demo = Demo();
+		try{
+			demo.show();
+		}catch(e){
+			console.log(e)
+		}
+
+		// 安全管理类
+		var Factory = function(type,content){
+			console.log(this)
+			if(this instanceof Factory){
+				// **************
+				var s = new this[type](content);
+				console.log(this[type])
+				return s
+			}else{
+				return new Factory(type,content)
+			}
+		}
+		Factory.prototype = {
+			Java:function(content){
+				this.content = content;
+				document.write(content);
+			},
+			PHP:function(content){
+				this.content = content;
+				document.write(content);
+			},
+			JavaScript:function(content){
+				this.content = content;
+				document.write(content);
+			}
+		}
+
+		var factory = new Factory("Java","java后台语言");
+
+		//在构造函数原型上添加函数方法，在安全管理类里边实例化函数方法；只需改动原型里边的方法即可
+	</script>
+</body>
+</html>

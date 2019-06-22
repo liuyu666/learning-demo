@@ -1,0 +1,15 @@
+dom2级事件处理程序：
+
+dom.addEventListener('click',fn,false)//false代表冒泡阶段使用
+function fn(){
+	alert(1)
+}
+dom.removeEventListener('click',fn,false)
+
+IE:
+dom.attachEvent('onclick',fn)
+dom.detachEvent('onclick',fn)
+===================================================
+
+stopPropagation//阻止冒泡
+cancelBubble//IE阻止冒泡

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		main{
+			margin: 0;
+			height: 400px;
+			width: 200px;
+			background-color: yellow;
+		}
+		/* .text:before{
+			content: "";
+			width: 50px;
+			height: 100px;
+			float: left;
+			background-color: red;
+		} */
+		.text::selection{
+			background-color: red;
+			color: yellow;
+		}
+		.redBox{
+			width: 50px;
+			height: 100px;
+			/*float: left;*/
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div class="text"><div class="redBox"></div>这个题目几乎是我每次必问的，因为这个题区分度、深度和覆盖范围都很高。这个题的答案可以分成不同的层级:
+
+position属性常用的取值static、relative以及absolute和它们的基本行为是每个前端都应该掌握的。这包括relative和absolute的定位原点。
+fixed旧版本IE不支持，但是一个对技术有热情的工程师也是应该了解的。
+有过研究工程师可以知道absolute的containing block计算方式跟正常流不同，当然如果没读过标准的话，表述方式不一定是这样。
+对CSS布局有深入研究的工程师会知道position跟display、margin collapse、overflow、float这些特性相互叠加后的行为。
+区分度可以让题目可以适用于入门级到专家级的各种面试者，深度可以保证有深度研究的面试者可以展示他们的才能，覆盖范围可以有效地了解面试者擅长的方向。
+
+
+首先我希望表达的一点，就是面试的评判跟学校里的考试完全是两回事，太多的人把面试当做考试而把注意力放在题目上。
+</div>
+		<div class="right"></div>
+	</main>
+	
+</body>
+</html>

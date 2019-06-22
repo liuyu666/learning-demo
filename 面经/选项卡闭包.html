@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul,li{
+			list-style: none;
+		}
+		.clear:after{
+			display:block;
+			clear:both;
+			content:"";
+			visibility:hidden;
+			height:0
+		} 
+		.tit li{
+			float: left;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			background-color: orange;
+		}
+		.con li{
+			display: none;
+			width: 300px;
+			height: 150px;
+			background-color: gray;
+		}
+		.con li:first-child{
+			display: block;
+		}
+		ul .on{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<ul class="tit clear">
+		<li>标题一</li>
+		<li>标题二</li>
+		<li>标题三</li>
+	</ul>
+	<ul class="con">
+		<li>内容一</li>
+		<li>内容二</li>
+		<li>内容三</li>
+	</ul>
+	<script>
+		let tit_lis = document.querySelectorAll(".tit li");
+		let con_lis = document.querySelectorAll(".con li");
+		/*for (let i = 0; i < tit_lis.length; i++) {
+			tit_lis[i].onclick = function(){
+				document.querySelectorAll('.con').
+			}
+		}*/
+		/*for (var i = 0; i < tit_lis.length; i++) {
+			tit_lis[i].onclick = (function(x){
+				return function(){
+					console.log(x);
+				}
+			})(i)
+		}*/
+		/*for (var i = 0; i < tit_lis.length; i++) {
+			(function a(x){
+				tit_lis[i].onclick = function(){
+						console.log(x);
+				}
+			})(i)
+		}*/
+	</script>
+</body>
+</html>

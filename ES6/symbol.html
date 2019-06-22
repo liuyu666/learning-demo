@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>symbol</title>
+</head>
+<body>
+	<script>
+		// let sym = Symbol("foo");
+		// console.log(sym.description);
+		// console.log(sym.toString());
+		let mySym = Symbol();
+
+		// let obj = {};
+		// obj[mySym] = "hello";
+		// console.log(obj[mySym]);
+
+		// let a = {};
+		// Object.defineProperty(a,mySym,{value:"你好"});
+		// console.log(a[mySym]);
+		// a.mySym = "hello";
+		// console.log(a.mySym);
+		// console.log(a[mySym]);
+		// console.log(Reflect.ownKeys(a));
+
+
+		let s = Symbol("foo")
+		let s1 = Symbol.for("foo")
+		let s2 = Symbol.for("foo")
+		console.log(Symbol.keyFor(s1))
+		console.log(s==s1)
+		console.log(s)
+
+
+	</script>
+</body>
+</html>
