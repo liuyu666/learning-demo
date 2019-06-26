@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		{
+			text-align: center;/*水平居中*/
+			line-height: /*盒子的高度*/
+		}
+
+		{
+			margin:0 auto;
+			
+		}
+		/*绝对定位*/
+
+		{
+			display:box;
+			box-pack:center;/*水平居中*/
+			box-align:center;/*垂直居中*/
+		}
+		{
+		    display:flex;
+		    align-items:center;/*垂直居中*/
+		    justify-content:center;/*水平居中*/
+		}
+
+		{
+			background-position: center;
+		}
+
+		ul,li{
+			list-style: none;
+		}
+		li{
+			height: 200px;
+			width: 200px;
+			background-color: orange;
+			margin:10px;
+		}
+		li>div{
+			height: 50px;
+			width:50px;
+			background-color: lightgreen;
+		}
+		.child1{
+			margin: 0 auto;/* 水平居中 */
+		}
+
+
+		/*子元素变成块级，水平居中,子元素字也会居中*/
+		.parent2{
+			text-align: center;
+		}
+		.child2{
+			display: inline-block;
+		}
+
+		/*flex布局,水平垂直居中*/
+		.parent3{
+			display: flex;
+			align-items: center;
+			justify-content:center;
+		}
+
+		/*定位,相对与父级定位，margin值减去自己的宽高度一半*/
+		.parent4{
+			position: relative;
+		}
+		.child4{
+			position: absolute;
+			left:50%;
+			top: 50%;
+			margin-left: -25px;
+			margin-top: -25px;
+		}
+
+		/*定位，margin值auto*/
+		.parent5{
+			position: relative;
+		}
+		.child5{
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+		}
+
+		/*display:table-cell实现水平垂直居中,无margin*/
+		.parent6{
+			display: table-cell;
+			vertical-align: middle;
+		}
+		.child6{
+			margin: 0 auto;
+		}
+
+		/*定位+transform*/
+		.parent7{
+			position: relative;
+		}
+		.child7{
+			position: absolute;
+			left: 50%;
+			top:50%;
+			transform: translate(-50%,-50%);
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="parent1">
+			<div class="child1">child1</div>
+		</li>
+		<li class="parent2">
+			<div class="child2">child2</div>
+		</li>
+		<li class="parent3">
+			<div class="child3">child3</div>
+		</li>
+		<li class="parent4">
+			<div class="child4">child4</div>
+		</li>
+		<li class="parent5">
+			<div class="child5">child5</div>
+		</li>
+		<li class="parent6">
+			<div class="child6">child6</div>
+		</li>
+		<li class="parent7">
+			<div class="child7">child7</div>
+		</li>
+	</ul>
+</body>
+</html>

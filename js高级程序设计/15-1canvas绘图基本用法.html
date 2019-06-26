@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="draw" width="200px" height="200px"></canvas>
+	<canvas id="draw1" width="200px" height="200px"></canvas>
+	<canvas id="draw2" width="200px" height="200px"></canvas>
+	<script>
+		var draw = document.querySelector("#draw");
+		console.log(draw)
+		if(draw.getContext){
+			var context = draw.getContext("2d");
+
+			//边框
+			context.strokeStyle = "red";
+			context.strokeRect(20,20,60,60)
+
+			// 实体块
+			context.fillStyle = "#00f";
+			context.fillRect(10,10,50,50);
+
+			// context.fillStyle = rgba(0,0,255,0.5);
+			// context.fillRect(10,10,50,50);
+			// context.fillStyle = rgba(255,0,0,0.5);
+			// context.fillRect(30,30,50,50);
+
+			// 取得canvas图像url
+			var imgUrl = draw.toDataURL("image/png");
+			var image = document.createElement("img");
+			image.src = imgUrl
+			document.body.appendChild(image)
+		}
+
+		var draw1 = document.querySelector("#draw1");
+		if(draw1.getContext){
+			let context1 = draw1.getContext("2d");
+			context1.fillStyle = "rgba(0,0,255,0.5)";
+			context1.fillRect(10,10,50,50);
+			context1.fillStyle = "rgba(255,0,0,0.5)";
+			context1.fillRect(30,30,50,50);
+			// 切除
+			context1.clearRect(40,40,10,10);
+		}
+
+		// 绘制表盘
+		var draw2 = document.querySelector("#draw2");
+		let context2 = draw2.getContext("2d");
+		// 开始绘制路径
+		context2.beginPath();
+
+		// 绘制圆
+		context2.arc(100,100,99,0,2*Math.PI,false)
+		context2.moveTo(194,100);
+		context2.arc(100,100,94,0,2*Math.PI,false)
+
+		//变换原点到表盘中心
+		context2.translate(100,100);
+
+		// 旋转表针
+		context2.rotate(Math.PI)
+
+		// 起点
+		context2.moveTo(0,0);
+		// 终点
+		context2.lineTo(0,-85);
+
+		context2.moveTo(0,0);
+		context2.lineTo(-65,0);
+
+		// 绘制文本
+		// context2.font = "14px";
+		// context2.textAlign = "center";
+		// context2.textBaseLine = "middle";
+		// context2.fillText("12",100,20)
+		context2.stroke();
+
+		context2.fillStyle = "red";
+		context2.save();
+
+		context2.fillStyle = "blue";
+		context2.translate(100,100);
+		context2.save();
+
+		context2.fillStyle = "yellow";
+		context2.fillRect(0,0,100,200);
+
+		context2.restore();
+		context2.fillRect(0,0,100,200)
+		context2.restore();
+		context2.fillRect(0,0,100,200)
+
+		// var fontSize = 100;
+		// context2.font = fontSize+"px";
+		// while(context2.measureText("hello").width>2000){
+		// 	fontSize--;
+		// 	context2.font = fontSize+"px"
+		// }
+		// context2.fillText("hello",10,10)
+		// context2.fillText("FontSize is"+fontSize+"px",10,50)
+
+	</script>
+</body>
+</html>
