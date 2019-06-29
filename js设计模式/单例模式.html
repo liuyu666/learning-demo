@@ -42,6 +42,19 @@
 		fn("hello")
 
 		console.log(single.getUnique("world"));//直接返回unique之前实例化的对象，没有重新进行实例化Construct函数类
+
+
+		//js设计模式 单例模式
+		var yu = {
+			g:function(){
+				console.log("hello")
+			},
+			b:function(){
+				this.g()
+			}
+		}
+
+		yu.b()
 	</script>
 </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var LoopImage = function(image,container){
+			this.image = image;
+			this.container = container;
+		}
+
+		LoopImage.prototype = {
+			createImage:function(){
+				console.log("LoopImage createImage")
+			},
+			changeImage:function(){
+				console.log("LoopImage changeImage")
+			},
+			getImageLen:function(){
+				return this.image.length;
+			}
+		}
+		// 类似类式继承
+		var FadeImage = function(image,container,arrow){
+			LoopImage.call(this,image,container);
+			this.arrow = arrow;
+		}
+		FadeImage.prototype = new LoopImage();
+		// 修改子集的独有方法
+		FadeImage.prototype.changeImage = function(){
+			console.log("FadeImage changeImage")
+		}
+
+
+		// 测试用例
+		var fadeImag = new FadeImage(["a.jpg","b.jpg"],"slide","Arrow")
+		console.log(fadeImag.container);
+		console.log(fadeImag.getImageLen());
+		fadeImag.changeImage();
+
+
+		// 复制属性实现继承
+		function PrototypeExtend(){
+			var F = function(){}
+			var args = arguments;
+			var i = 0;
+			for (; i < args.length; i++) {
+				for(var j in args[i]){
+					F.prototype[j] = args[i][j]
+				}
+			}
+			return new F();
+		}
+		var penguin = PrototypeExtend({
+			speed:20,
+			swim:function(){
+				return this.speed
+			}
+		},{
+			run:function(speed){
+				return speed
+			}
+		},{
+			jump:function(){
+				return "跳跃"
+			}
+		})
+		console.log(penguin.swim())
+		console.log(penguin.run(50))
+		console.log(penguin.jump())
+	</script>
+</body>
+</html>

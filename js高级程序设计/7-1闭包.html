@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function a(){
+			alert("hello")
+		}
+		var b = a;
+		a = null;
+		b();
+
+		// 严格模式下，不能使用arguments.callee
+		var factorial = (function f(num){
+			if(num<=1){
+				return 1
+			}else{
+				return num*f(num-1)
+			}
+		})
+		console.log(factorial(3))
+	</script>
+</body>
+</html>
