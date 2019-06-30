@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function FirstNotRepeatingChar(str){
+		    var arr = str.split("");
+		    var obj = {};
+		    for(var i = 0;i<arr.length;i++){
+		    	var key = arr[i];
+		    	console.log(obj[key])
+		        // obj[key]?obj[key]+=1:obj[key]=1
+		        if(obj[key]||obj[key]==0){
+		        	obj[key]=10001
+		        }else{
+		        	obj[key]=i
+		        }
+		    };
+		    console.log(obj);
+		    for(var j in obj){
+		        if(obj[j]!=10001){
+		            return obj[j]
+		        }
+		    }
+		    return -1
+		}
+		console.log(FirstNotRepeatingChar("世博倒计时不仅闹剧洗世界脑三星撒翱翔你"))
+	</script>
+</body>
+</html>

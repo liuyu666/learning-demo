@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		// timg.gif 加载中···
+		var src = 'http://pic.962.net/up/2014-4/2014043015463569548.jpg';//需要等待加载的图片链接
+
+		// 创建img标签，设置src
+		var setImage = (function(){
+			var pic = document.createElement("img");
+			document.body.appendChild(pic)
+			return {
+				setsrc:function(src){
+					pic.src = src
+				}
+			}
+		})()
+
+		// 设置等待图片加载
+		var proxysetImage = (function(){
+			// 创建图片实例
+			var image = new Image();
+			image.onload = function(){
+				setImage.setsrc(image.src);
+			}
+			return {
+				setsrc:function(src){
+					setImage.setsrc("timg.gif");
+					image.src = src
+				}
+			}
+		})()
+		// 测试用例
+		// proxysetImage.setsrc(src)
+
+		// 简易写法（不推荐）
+		function set(src){
+			var pic = document.createElement("img");
+			document.body.appendChild(pic);
+			pic.src = "timg.gif";
+			var image = new Image();
+			image.src = src;
+			image.onload = function(){
+				pic.src = image.src;
+			}
+		}
+		// 测试用例
+		set(src)
+	</script>
+</body>
+</html>

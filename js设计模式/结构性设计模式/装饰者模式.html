@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 无需知道元素原来的绑定事件，在此基础上新增操作，适配器模式需要知道
+		// 示例增加onclick
+		function decorator(input,fn){
+			var id = document.getElementById(input);
+			if(typeof id.onclick == "function"){
+				//已有click事件，保存原先事件，并且新增
+				var old = id.onclick;
+				id.onclick = function(){
+					old();
+					// 新增方法
+					fn();
+				}
+			}else{
+				//原先没有click，直接绑定，不会覆盖
+				id.onclick = fn
+			}
+		}
+	</script>
+</body>
+</html>
