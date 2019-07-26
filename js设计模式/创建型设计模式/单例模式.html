@@ -77,6 +77,29 @@
 
 		console.log(Count.get("COUNT"))
 		yu.b()
+
+
+
+
+		/*博客园*/
+		function single(){
+			var mask;
+			return function(){
+				return mask||(mask = function(){document.body.appendChild(document.createElement("div")})
+			}
+		}
+
+		/*改进 桥接模式*/
+		//创建唯一实例的方法分离出来
+		function singleTon(fn){
+			var result;
+			return function(){
+				return result||result = fn.apply(this,arguments)
+			}
+		}
+		singleTon(function(){
+			document.body.appendChild(document.createElement("div")
+		})
 	</script>
 </body>
 </html>

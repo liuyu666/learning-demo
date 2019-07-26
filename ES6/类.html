@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class Persion{
+			constructor(height,width){
+				this.height = height;
+				this.width = width;
+				this.name=["tom","jerry"]
+			}
+			get say(){
+				return this.calcArea()
+			}
+			calcArea(){
+				return this.height*this.width
+			}
+			speak(){
+				console.log(`${this.width}米`);
+				console.log(this.name)
+			}
+			static pingP(){
+				return "父级静态方法"
+			}
+		}
+		var per = new Persion(20,40);
+		console.log(per.say)
+
+		// 静态方法
+
+		class Point{
+			constructor(x,y){
+				this.x = x;
+				this.y = y;
+			}
+			static distance(a,b){
+				var dx = a.x-b.x;
+				var dy = a.y-b.y;
+				return Math.hypot(dx,dy);
+			}
+		}
+		var p1 = new Point(10,20);
+		var p2 = new Point(40,20);
+
+		console.log(Point.distance(p1,p2))
+
+		// 创建子类extends
+
+		class Child extends Persion{
+			// 如果有constructor构造函数，需要在this之前调用super()
+			constructor(){
+				super()
+				this.age = 10
+			}
+			speak(){
+				console.log(`${this.width}M`);
+				console.log(this.name)
+			}
+			addPersion(name){
+				this.name.push(name)
+			}
+			static ping(){
+				console.log(super.pingP())
+			}
+		}
+		var son = new Child([20,40],30);
+		var son1 = new Child(40,30);
+		son.speak();
+		son.addPersion("jack");
+		son.speak();
+		son1.speak();
+		per.speak();
+		// 不存在引用类型污染
+
+		Child.ping()
+	</script>
+</body>
+</html>
