@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// call函数
+		var foo = {
+			value:1
+		}
+		function bar(){
+			console.log(this.value)
+		}
+		bar()
+		/*实现逻辑
+		bar放入foo作用域里边
+		*/
+		// var foo = {
+		// 	value:1,
+		// 	bar:function(){
+		// 		console.log(this.value)
+		// 	}
+		// }
+		// foo.bar()
+
+		// foo.fn = bar;
+		// foo.fn();
+		// delete foo.fn;
+		// console.log(foo)
+
+		// Function.prototype.mycall = function(context){
+		// 	context.fn = this;//this指向构造函数
+		// 	context.fn();
+		// 	delete context.fn
+		// }
+		// bar.mycall(foo);
+
+		//=====================================================
+		// 更多参数
+		var foo1 = {
+			value:1
+		}
+		function bar1(name,age){
+			console.log(name)
+			console.log(age)
+			console.log(this.value)
+		}
+
+		// Function.prototype.mycall = function(context){
+		// 	context = context||window
+		// 	context.fn = this;//this指向构造函数
+		// 	var args = [];
+		// 	for(var i=1;i<arguments.length;i++){
+		// 		args.push('arguments['+i+']')
+		// 	}
+		// 	eval('context.fn('+args+')');
+
+		// 	delete context.fn
+		// }
+		Function.prototype.mycall = function(context){
+			if(typeof this!="function"){
+				throw new TypeError("not function")
+			}
+			context = context||window
+			context.fn = this;//this指向构造函数
+			var args = [...arguments].slice(1);
+			var result = context.fn(...args)
+			delete context.fn
+			return result
+		}
+		bar1.mycall(foo1,"cherry",21);
+	</script>
+</body>
+</html>

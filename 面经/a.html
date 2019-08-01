@@ -15,9 +15,29 @@
 		  background-color: lightgreen;
 		  margin: 10px 0;
 		}
+		.box{
+			overflow: hidden;
+		}
+		.box1,.box2{
+			height: 200px;
+			width: 200px;
+			margin: 30px;
+			background-color: orange;
+		}
+		.box2{
+			float:left;
+		}
+		
 	</style>
 </head>
 <body>
+	<!-- 1.浮动的元素会被父级计算高度（父级触发了BFC）
+	
+	    2.非浮动元素不会覆盖浮动元素位置（非浮动元素触发了BFC）
+	
+	    3.margin不会传递给父级（父级触发了BFC）
+	
+	    4.两个相邻元素上下margin会重叠（给其中一个元素增加一个父级，然后让他的父级触发BFC） -->
 	<div class="container">
 	  <p>Sibling 1</p>
 	  <p>Sibling 2</p>
@@ -26,6 +46,17 @@
 	  <p>Sibling 1</p>
 	  <p>Sibling 2</p>
 	</div>
+	<div class="box2"></div>
+	<div class="box1"></div>
+	<div class="box">
+		<div class="box1"></div>
+	</div>
+
+	<ol>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ol>
 <p>bubue</p>
 <p>bubue</p>
 </body>

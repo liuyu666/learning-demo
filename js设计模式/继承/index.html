@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function Animal(name){
+			//属性
+			this.name = name||'Animal';
+			// 实例方法
+			this.sleep = function(){
+				console.log(this.name+"正在睡觉")
+			}
+		}
+		//原型方法
+		Animal.prototype.eat = function(food){
+			console.log(this.name+"正在吃"+food)
+		}
+
+		function Animal1(name){
+			//属性
+			this.name = name||'Animal1';
+			// 实例方法
+			this.foot = function(num){
+				console.log(this.name+"有"+num+"只脚")
+			}
+		}
+
+		/*原型继承:无法实现多继承*/
+		function Cat(){
+		}
+		Cat.prototype = new Animal();
+		Cat.prototype.name = 'Cat'
+
+		// ===============
+		console.log("原型继承:无法实现多继承")
+		var cat1 = new Cat();
+		console.log(cat1.name);
+		cat1.sleep()
+		cat1.eat("apple")
+
+		/*构造函数继承:不能继承原型链上的方法属性*/
+		function Dog(name){
+			Animal.call(this);
+			Animal1.call(this);
+			this.name = name||'dog'
+		}
+
+		//===================
+
+		console.log("构造函数继承:不能继承原型链上的方法属性")
+		var dog1 = new Dog("tom");
+		console.log(dog1.name);
+		dog1.sleep()
+		dog1.foot(4)
+		try{
+			dog1.eat("apple")// dog1.eat is not a function
+		}catch(e){
+			console.log(e)
+		}
+		/*组合继承:父级两份实例化*/
+		function Monkey(name){
+			Animal.call(this);
+		}
+		Monkey.prototype=new Animal(name);//在此处第二份实例属性
+		console.log(Monkey.prototype.constructor);//Animal
+		Monkey.prototype.constructor = Monkey;
+
+		//================
+		console.log("组合继承:父级两份实例化")
+		var monkey1 = new Monkey("tom");
+		console.log(monkey1.name);
+		monkey1.sleep()
+		try{
+			monkey1.eat("apple")// dog1.eat is not a function
+		}catch(e){
+			console.log(e)
+		}
+
+		/*寄生继承:将父级实例砍掉*/
+		function Jerry(name){
+			Animal.call(this);
+		}
+		(function(){
+			function F(){}
+			F.prototype = Animal.prototype;//过滤掉父类实例
+			Jerry.prototype = Animal.prototype;
+			// Jerry.prototype=new F();
+			Jerry.prototype.constructor = Jerry;
+		})()
+		//增加子类原型方法
+		Jerry.prototype.say = function(){
+			console.log("hello")
+		}
+
+		//====================
+		console.log("寄生继承:将父级实例砍掉")
+		console.log(Jerry.prototype.constructor)
+		console.log(Monkey.prototype.constructor)
+
+
+		console.log("cuowu :")
+		console.log(Animal.prototype);
+		Jerry.prototype.color = "red";
+		console.log(Animal.prototype)
+	</script>
+</body>
+</html>

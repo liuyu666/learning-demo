@@ -1,7 +1,6 @@
 const 常量 
 定义数组对象可以添加
 
-
 模板字面量(ES6)
 `${}`
 
@@ -39,7 +38,7 @@ function sum(a,b){
 	//处理函数
 }
 
-function sum_pl(){
+function sum_pl(a,b){
 	sum.apply(this,[a,b]);
 }
 

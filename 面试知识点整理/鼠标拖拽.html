@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			height: 200px;
+			width: 200px;
+			background-color: orange;
+			position: absolute;
+		}
+
+		/*html5*/
+		.dropBox{
+			height: 200px;
+			width: 200px;
+			border:1px solid black; 
+		}
+		#dragBox{
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+
+	<!-- html5 -->
+	<div class="dropBox" ondrop="" ondragover=""></div>
+	<div class="dropBox" ondrop="drop(event)" ondragover="allowDrap(event)"></div>
+	<div id="dragBox" dragable="true" ondragstart="drag(event)"></div>
+	<script>
+		var box = document.querySelectorAll(".box")[0];
+		console.log(box);
+		var mouseX,mouseY,boxX,boxY;
+		function mouseDown(e){
+			console.log(e)
+			mouseX = e.clientX;
+			mouseY = e.clientY;
+			boxX = box.offsetLeft;
+			boxY = box.offsetTop;
+			box.addEventListener("mousemove",mouseMove);
+		}
+		function mouseMove(e){
+			moveX = mouseX-e.clientX
+			moveY = mouseY-e.clientY
+			box.style.left = boxX-moveX+"px"
+			box.style.top = boxY-moveY+"px"
+			console.log(moveX,moveY,boxX,boxY)
+		}
+
+		function mouseUp(e){
+			console.log("移除")
+			box.removeEventListener("mousemove",mouseMove);
+		}
+		box.addEventListener("mousedown",mouseDown);
+		box.addEventListener("mouseup",mouseUp);
+
+		//html5 drag和drop
+		function drag(e){
+			e.dataTransfer.setData("Text",e.target.id)
+		}
+		function allowDrap(e){
+			e.preventDefault()
+		}
+		function drop(e){
+			e.preventDefault();
+			var data = e.dataTransfer.getData("Text");
+			e.target.appendChild(document.getElementById(data))
+
+		}
+	</script>
+</body>
+</html>

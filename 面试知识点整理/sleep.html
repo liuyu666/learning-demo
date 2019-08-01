@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// function sleep(ms){
+		// 	console.log("start"+Date.now())
+		// 	var start = Date.now(),expire = start+ms;
+		// 	while(Date.now()<expire);
+		// 	console.log("111");
+		// 	console.log("end"+Date.now())
+
+		// }
+		// sleep(2000);
+
+		/*通过promise实现*/
+		function sleep(ms){
+			let delay = new Promise((resolve)=>{
+				console.log("111");
+				setTimeout(resolve,ms)
+			})
+			return delay
+		}
+		sleep(1000).then(()=>{
+			console.log("hello")
+		})
+	</script>
+</body>
+</html>

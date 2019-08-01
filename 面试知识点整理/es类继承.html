@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		class Persion{
+			constructor(name){
+				this.name = name
+			}
+			say(){
+				console.log(this.name)
+			}
+			static run(){
+				console.log("跑步")
+			}
+		}
+		class Son extends Persion{
+			constructor(name){
+				/*用父级之前需要用super将父级方法属性引过来*/
+				super(name)
+			}
+			eat(){
+				super.say()
+			}
+			static sonRun(){
+				//父级静态方法只能在父级里边用
+				super.run()
+			}
+		}
+		var persion1 = new Son("xiaoming");
+		console.log(persion1.name)
+		persion1.say()
+		persion1.eat()
+		Son.run()
+		Son.sonRun()
+	</script>
+</body>
+</html>

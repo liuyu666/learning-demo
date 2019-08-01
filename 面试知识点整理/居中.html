@@ -41,7 +41,7 @@
 		}
 		li>div{
 			height: 50px;
-			width:50px;
+			width:100px;
 			background-color: lightgreen;
 		}
 		.child1{
@@ -72,7 +72,7 @@
 			position: absolute;
 			left:50%;
 			top: 50%;
-			margin-left: -25px;
+			margin-left:-50px;
 			margin-top: -25px;
 		}
 
@@ -108,6 +108,15 @@
 			top:50%;
 			transform: translate(-50%,-50%);
 		}
+		.parent8{
+			display: table;
+		}
+		.child8{
+			display:table-cell;
+			vertical-align: middle;
+	        text-align: center;
+	        border: 1px solid #666;
+		}
 	</style>
 </head>
 <body>
@@ -132,6 +141,9 @@
 		</li>
 		<li class="parent7">
 			<div class="child7">child7</div>
+		</li>
+		<li class="parent8">
+			<div class="child8">child7</div>
 		</li>
 	</ul>
 </body>
