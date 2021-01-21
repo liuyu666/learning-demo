@@ -94,7 +94,7 @@
 		function singleTon(fn){
 			var result;
 			return function(){
-				return result||result = fn.apply(this,arguments)
+				return result||result == fn.apply(this,arguments)
 			}
 		}
 		singleTon(function(){
