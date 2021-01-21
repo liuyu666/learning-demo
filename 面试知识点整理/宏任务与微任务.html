@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var r = new Promise(function(resolve,reject){
+				console.log("a");
+				setTimeout(()=>{console.log("x")},0);
+				resolve()
+		})
+		setTimeout(()=>{
+			console.log("d");
+			new Promise(function(resolve,reject){
+				resolve()
+			}).then(()=>console.log("second microtask"))},0);
+		r.then(()=>{
+			console.log("c")
+		})
+		console.log("b")
+
+		new Promise(function(resolve,reject){
+				console.log("a");
+				setTimeout(()=>{console.log("y")},0);
+				resolve()
+		}).then(()=>{
+			console.log("c")
+		})
+		setTimeout(()=>{console.log("d")},0);
+		console.log("b")
+	</script>
+</body>
+</html>

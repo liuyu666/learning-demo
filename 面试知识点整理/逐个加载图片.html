@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*!(function loadImg(){
+			var img = new Image();
+			img.src="./二叉树前中后序遍历.png";
+			console.log(img);
+			document.body.appendChild(img)
+			setTimeout(loadImg,2000)
+		})()*/
+		var img = new Image();
+		setTimeout(()=>{
+			img.src="./二叉树前中后序遍历.png";
+		},2000)
+		img.onload=function(){
+			document.body.appendChild(img)
+		}
+	</script>
+</body>
+</html>

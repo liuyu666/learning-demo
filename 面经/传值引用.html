@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var num = 2;
+		var arr = [1.33,45,5,54];
+		function func(num,arr){
+			arr[1] = 22;
+			num++;
+			console.log(num,arr,"局部")
+		}
+		func(num,arr);
+		console.log(num,arr,"全局")
+	</script>
+</body>
+</html>

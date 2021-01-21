@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>web sql database</title>
+</head>
+<body>
+	<script>
+		//openDatabase 创建或打开数据库
+		//transaction 访问数据库
+		//excuteSql 执行SQL语句
+		function dataBase(){
+			if(!window.openDatabase){
+				console.log("不支持web sql database")
+				return false
+			}
+			var dataBase = window.openDatabase("myDatabase.db","1.0","数据库",10*1024*1024)//1.数据库名字，2.版本号，3.显示名字，4.大小
+			dataBase.transaction(function(tx){
+
+				
+			})
+		}
+	</script>
+</body>
+</html>

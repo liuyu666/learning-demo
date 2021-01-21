@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id='button'>防抖click</button>
+	<button onclick="debounce(fn,1000)">防抖点击1</button>
+	<button onclick="de(fn)">防抖点击</button>
+	<button id="throttle">节流点击</button>
+	<script>
+		//防抖 一段时间间隔内如果持续触发一个函数，则此函数不执行，直到超过这个时间间隔再触发；比如用户输入框校验，用户change不触发，停下来一段时间再去触发
+		var fn = function(e){
+			console.log("e")
+		}
+		var debounce = function(fn,delay){
+			var timer = null
+			return function(args){
+				clearTimeout(timer)
+				timer = setTimeout(()=>{
+					fn(args)
+				},delay);
+			}
+		}
+		function de(e){
+			console.log(e)
+		}
+		// document.querySelector("#button").addEventListener("click",debounce(fn,1500),false)
+		document.querySelector("#button").onclick = debounce(fn,1500)
+
+
+		//节流 连续的事件触发，函数只在每隔一个时间间隔之后触发一次
+		var throttle = function(fn,delay){
+			var timer;
+			var flag = true;
+			//return 出来的函数是一个局部作用域，下一个函数判断flag会根据前一个函数的flag
+			return function(){
+				if(flag){
+					flag = false;
+					clearTimeout(timer);
+					timer = setTimeout(()=>{
+						fn();
+						flag = true
+					},delay)
+				}
+			}
+		}
+		document.querySelector("#throttle").onclick = throttle(fn,1500)
+		// setTimeout，addEventListener第一个参数是函数名，而不是fn()
+	</script>
+</body>
+</html>

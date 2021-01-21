@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		setTimeout(function(){
+			console.log("hello")
+			setTimeout(arguments.callee,2000)
+		},2000)
+
+		!(function say(){
+			console.log("world")
+			setTimeout(say,1000)
+		})()
+
+	</script>
+</body>
+</html>

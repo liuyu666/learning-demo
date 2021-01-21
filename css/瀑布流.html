@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style>
+		.box{
+			width:100%;
+			margin: 20px auto;
+			overflow: hidden;
+		}
+		ul{
+			float: left;
+			list-style: none;
+			padding: 0;
+			width: 31.3%;
+			margin:0 1%;
+			background-color: red;
+			/*min-height: 20px*/
+		}
+		ul>img{
+			width: 100%
+		}
+		.box1{
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+<script>
+	let domUl = document.querySelectorAll("ul");
+	console.log(domUl)
+	var ulHeight = [0,0,0]
+	function pushImg(i=0){
+		if (i <= 17) {
+			let hMin = Math.min(...ulHeight)
+			let hIndex = ulHeight.indexOf(hMin)
+			console.log(hMin,hIndex,88)
+			let img = new Image();
+			img.src = `./img${i+1}.jpg`;
+			img.title = `./img${i+1}.jpg`;
+			domUl[hIndex].appendChild(img);
+			img.onload = function(){
+				ulHeight[hIndex] = domUl[hIndex].offsetHeight
+				console.log(ulHeight,11)
+				i++;
+				pushImg(i)
+			};
+			console.log(ulHeight,99)
+		}
+	}
+	pushImg()
+</script>
+</body>
+</html>

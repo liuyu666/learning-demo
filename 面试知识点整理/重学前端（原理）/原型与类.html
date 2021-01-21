@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//基于类：先有类，后有使用
+		//基于原型：更关注对象实例的行为
+		// js基于原型：函数式编程
+
+		// 原型系统‘复制操作’：不去复制原型，而是一个引用
+
+		// 原型系统：1.对象都有一个私有字段[[prototype]],就是对象的原型；
+		// 			2.读取属性，如果没有，就找原型；
+
+		/* Object.create()根据原型创建新对象*/
+		var cat = {
+			say(){
+				console.log("meow~")
+			},
+			jump(){
+				console.log("jump")
+			}
+		}
+		var tigger = Object.create(cat,{
+			say:{
+				value:function(){
+					console.log("roar!")
+				}
+			}
+		});
+		tigger.say();
+		console.log(Object.getPrototypeOf(cat),Object.prototype.toString());
+		var o = {
+			[Symbol.toStringTag]:"myObject"
+		};
+		console.log(o+"")
+	</script>
+</body>
+</html>
