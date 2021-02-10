@@ -68,3 +68,19 @@ for (var i of one){
 }
 
 // 最最关键的理解：如何实现迭代？for of是调用了数据结构的[Symbol.iterator](),返回了一个iter对象{next: ()=> { value, done}}, 连续调用iter对象，取其中的value，[Symbol.iterator]只执行一遍
+
+let obj2 = {
+  de: "ded",
+  cdsw: "ccd",
+  cds: "s"
+}
+console.log(obj2, 'obj2');
+Object.prototype.aa = 999
+console.log('aa' in obj2, 'aa?');
+
+for (const key in obj2) {
+  if (Object.hasOwnProperty.call(obj2, key)) { //
+    const element = obj2[key];
+    console.log(element, key);
+  }
+}
