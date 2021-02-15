@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajax": "0.0.4",
     "fs.promised": "^3.0.0",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",

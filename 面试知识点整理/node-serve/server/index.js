@@ -12,6 +12,18 @@ const app = new Koa();
 // static
 app.use(main);
 
+// cors跨域
+app.use((ctx, next)=> {
+  console.log('跨域');
+  // ctx.set({
+  //   'Access-Control-Allow-Origin': '*', 
+  //   'Access-Content-Allow-Methods': 'GET,PUT,POST',
+  //   'Access-Content-Expose-Headers': 'Content-Type',
+  //   // 'Access-Control-Allow-Credentials': true // 设置此字段 Access-Control-Allow-Origin的值不能为 *
+  // });
+  next()
+});
+
 // logger
 app.use(async (ctx, next) => {
   await next();
@@ -39,6 +51,11 @@ const about = async (ctx)=>{
 }
 app.use(route.get('/home', home))
 app.use(route.get('/about', about))
+app.use(route.get('/jsonp', (ctx)=>{
+  console.log(ctx.query.callback);
+  let callback = ctx.query.callback
+  ctx.body = callback+"({data: '数据'})"
+}))
 
 
 // body

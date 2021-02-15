@@ -7,10 +7,23 @@
 </head>
 <body>
   <script>
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState == 4) {
+        if(xhr.status == 200) {
+          console.log(xhr.responseText);
+        }
+      }
+    }
+    xhr.open('get', 'http://localhost:80/jsonp?callback=fn', true)
+    xhr.send()
+
     function localHandler(res) {
       console.log('后端数据：', res);
     }
+    var script = document.createElement('script');
+    script.src = 'http://localhost:80/jsonp?callback=localHandler';
+    document.body.appendChild(script)
   </script>
-  <script src="http://localhost:3000/jsonp.js"></script>
 </body>
 </html>
