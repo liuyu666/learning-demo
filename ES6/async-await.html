@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    async function as() {
+      resolve(111)
+    }
+    async function ss() {
+      var aa = await new Promise(resolve=>{
+        setTimeout(() => {
+          resolve(222)
+        }, 1000);
+      })
+      
+    console.log(aa);
+    }
+    ss()
+  </script>
+</body>
+</html>

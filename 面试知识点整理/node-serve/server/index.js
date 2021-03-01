@@ -24,6 +24,28 @@ app.use((ctx, next)=> {
   next()
 });
 
+
+// nginx 方向代理跨域
+// server {
+//   listen       80;
+//   server_name  localhost;
+
+//   #charset koi8-r;
+
+//   #access_log  logs/host.access.log  main;
+
+//   location / {
+//       root   html;
+//       index  index.html index.htm;
+//       proxy_pass http://127.0.0.1:3000;
+//       add_header Access-Control-Allow-Origin *;
+//       add_header Access-Control-Allow-Methods 'GET, POST, OPTIONS';
+//       add_header Access-Content-Expose-Headers  'Content-Type';
+//       add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+
+//   }
+// }
+
 // logger
 app.use(async (ctx, next) => {
   await next();
