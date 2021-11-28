@@ -1,0 +1,22 @@
+<!-- page css -->
+<% content_for :css do %>
+<%= stylesheet_link_tag 'css/page/{{file.name}}' %>
+<% end %>
+
+
+
+<div class="mod-content mod-device">
+    <!-- 小导航 -->
+    <div class="mod-crumbs device-crumbs">
+        <i class="fa fa-mobile"></i>
+        <a href="">第一级菜单</a>
+        <span class="split">/</span>
+        <span class="disable">第二级菜单页面</span>
+    </div>
+
+</div>
+
+<!-- page js -->
+<% content_for :js do %>
+<%= javascript_include_tag "js/stc/{{file.name}}" %>
+<% end %>

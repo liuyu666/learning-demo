@@ -10,10 +10,119 @@
 			resolve("success")
 		}).then((x)=>{console.log(x)})*/
 
-		function myPromise(constructor){
-			this.pendding = true;
-			this.fuling = 
-		}
+		class MyPromise{
+      constructor(executor) {
+        this.status = 'pending'; // fullfilled rejected
+        this.data = undefined;
+        this.reason = undefined;
+        this.onFullFilledCallback = [];
+        this.onRejectedCallback = [];
+        let resolve = data=>{
+          if(this.status === 'pending') {
+            this.status = 'fullfilled';
+            this.data = data;
+            this.onFullFilledCallback.forEach(fn=> fn())
+          }
+        }
+        let reject = reason=>{
+          if(this.status === 'pending') {
+            this.status = 'rejected';
+            this.reason = reason;
+            this.onRejectedCallback.forEach(fn=> fn())
+          }
+        }
+        try {
+          executor(resolve, reject)
+        } catch (error) {
+          reject(error)
+        }
+      }
+      then(onFullFilled, onRejected) {
+        if(this.status === 'fullfilled') {
+          return new MyPromise((resolve, reject)=> {
+            try {
+              // 执行成功回调，如果返回是promise， 执行这个promise？？？； 如果是一个数值，直接resolve
+              let x = onFullFilled(this.data)
+              if(x instanceof MyPromise) {
+                x.then(resolve, reject)
+              }
+              resolve(x)
+            } catch (error) {
+              reject(error)
+            }
+          })
+          
+        }else if(this.status === 'rejected') {
+          return new MyPromise((resolve, reject)=> {
+            try {
+              let x = onRejected(this.reason)
+              if(x instanceof MyPromise) {
+                x.then(resolve, reject)
+              }
+              resolve(x)
+            } catch (error) {
+              reject(error)
+            }
+            
+          })
+          
+        }else if(this.status === 'pending') {
+          // return new MyPromise()
+          this.onFullFilledCallback.push(()=>{
+            // onFullFilled(this.data)
+            return new MyPromise((resolve, reject)=> {
+              try {
+                // 执行成功回调，如果返回是promise， 执行这个promise？？？； 如果是一个数值，直接resolve
+                let x = onFullFilled(this.data)
+                if(x instanceof MyPromise) {
+                  x.then(resolve, reject)
+                }
+                resolve(x)
+              } catch (error) {
+                reject(error)
+              }
+            })
+          })
+          this.onRejectedCallback.push(()=>{
+            // onRejected(this.reason)
+            return new MyPromise((resolve, reject)=> {
+              try {
+                let x = onRejected(this.reason) 
+                if(x instanceof MyPromise) {
+                  x.then(resolve, reject)
+                }
+                resolve(x)
+              } catch (error) {
+                reject(error)
+              }
+            })
+
+          })
+        }
+      }
+    }
+
+    // new MyPromise((resolve,reject)=>{
+    //   setTimeout(() => {
+    //     resolve("success00")
+    //   }, 2000);
+		// })
+    // .then((x)=>{console.log(x)},(x)=>{console.log(x, 'err')})
+    // .then(res=>console.log(res), err=>console.log(err, 44))
+
+    // let xx = new MyPromise((resolve,reject)=>{
+    //   reject("succeqss")
+		// })
+    // .then(
+    //   (x)=>{console.log(x)},
+    //   (x)=>{return new MyPromise((res, rej)=>{
+    //     res(999)
+    //   })
+    // })
+    // .then((x)=>{console.log(x, "???")},(x)=>{console.log(x, 'err')})
+
+    setTimeout(console.log, 1000, Promise.resolve(Promise.reject(99)));
+    setTimeout(console.log, 1000, Promise.resolve(new Error('foo')));
 	</script>
 </body>
 </html>

@@ -44,6 +44,65 @@
 		}
 
 		setTimeout(fn.myBind(obj,1,2),2000)
+
+    var perform = function(anymethods, wrapers) {
+      wrapers.forEach(element => {
+        element.init()
+      });
+      anymethods()
+      wrapers.forEach(element => {
+        element.end()
+      });
+    }
+    perform(() => {
+      console.log('say');
+    }, [
+      {
+        init: ()=> {
+          console.log('hello');
+        },
+        end: ()=> {
+          console.log('byebye');
+        }
+      },
+      {
+        init: ()=> {
+          console.log('hello2');
+        },
+        end: ()=> {
+          console.log('byebye2');
+        }
+      }
+    ])
+    function checkType(type) {
+      return (content)=> {
+        return Object.prototype.toString.call(content) === `[object ${type}]`
+      }
+    }
+    console.log(checkType('String')(32312));
+
+    
+    function add(){
+      console.log(arguments, 'arguments');
+      return Array.from(arguments).reduce((a, b)=>a+b, 0) ;
+    };
+    console.log(add(5,3,4,5,3), 'gg');
+    
+    const curring = (fn, arr = []) => {
+      // 函数的length 为函数参数的个数
+      let len = fn.length
+      console.log(len, 'len');
+      return (...args) => {
+        arr = arr.concat(args); // [1]  [1,2,3] < 5
+        if (arr.length < len) {
+          return curring(fn, arr)  // fn  add()
+        }
+        return fn(...arr)
+      }
+    }
+    let r = curring(add)(1)(2)(3)(4); // [1,2,3,4,5]
+    console.log(r);
+
 	</script>
 </body>
 </html>

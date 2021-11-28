@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .box {
+      width: 375rem;
+      height: 200px;
+      background-color: rgb(224, 255, 245);
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="box">
+    根元素html设置font-size，子元素用rem可以动态调整网页整体大小，按照375px设计稿绘制网页的时候，网站screen.width假如等于1536，可以设置网页根元素font-size为1536/375，这个时候，1rem也就等于这个数，就可以用rem等同于设计稿的px来进行绘制网页，做兼容的时候，只需要动态获取document.body.clientWidth/375为font-size
+  </div>
+  <ul>
+    <li class="screen-width">screen.width: 电脑分辨率/缩放比</li>
+    <li class="clientWidth">document.body.clientWidth: 浏览器窗口的宽度</li>
+    <li class="offsetWidth">document.ele.offsetWidth: 元素的宽度</li>
+    <li class="offsetWidth">window.devicePixelradio: 电脑屏幕的缩放比例</li>
+  </ul>
+  
+  <script>
+    function $(el) {
+      return document.querySelector(el)
+    }
+    console.log($('.screen-width'));
+    function throttle(fn, ms) {
+      let timer;
+      return function(...args){
+        if(!timer) {
+          timer = setTimeout(() => {
+            timer = null
+            fn.apply(this, args)
+          }, ms);
+        }
+      }
+    }
+
+    function debounce(fn, ms) {
+      let timer;
+      return (...args)=> {
+        if(timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          fn.apply(this, args)
+        }, ms);
+      }
+    }
+    let fnnn = throttle(()=>{
+      console.log( document.body.clientWidth/375, document.querySelector('html'), 'kkk');
+      document.querySelector('html').setAttribute('style', 'font-size:'+ document.body.clientWidth/375 + 'px') 
+    }, 500)
+    window.addEventListener('resize', fnnn)
+    
+  </script>
+</body>
+</html>

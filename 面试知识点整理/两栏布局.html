@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent {
+      width: 100%;
+      /* height: 200px; */
+      background-color: aqua;
+    }
+    .sider {
+      height: 100px;
+      background-color: brown;
+      float: left;
+      width: 200px;
+    }
+    .main {
+      height: 100px;
+      background-color: blueviolet;
+      /* float: left;
+      width: calc(100% - 200px); */
+      margin-left: 200px;
+    }
+
+    .outer6{overflow: auto; border: 1px solid red;}
+    .sidebar6{float: left;height:150px;background: #BCE8F1;}
+    .content6{overflow:auto;height:100px;background: #F0AD4E;}
+
+    
+
+    .outer7{display: flex; border: 1px solid red;}
+    .sidebar7{flex:0 0 200px;height:150px;background: #BCE8F1;}
+    .content7{flex: auto;height:100px;background: #F0AD4E;}
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="sider">sider</div>
+    <div class="main">main</div>
+  </div>
+
+  <div class="outer7">
+    <div class="sidebar7">sider</div>
+    <div class="content7">main</div>
+  </div>
+</body>
+</html>

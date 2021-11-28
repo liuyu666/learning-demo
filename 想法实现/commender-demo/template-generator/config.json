@@ -1,0 +1,9 @@
+{
+  "lastMenuName": "终端管理",
+  "menuName": "终端页面",
+  "file": {
+    "name": "device_ss" 
+  },
+  "rules": "./project-file/init_rules.rake",
+  "action": "./project-file/init_action_names.rake"
+}
